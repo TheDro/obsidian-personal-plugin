@@ -6,3 +6,16 @@ available in the app when your plugin is enabled.
 If your plugin does not need CSS, delete this file.
 
 */
+
+
+.hold-meta span.cm-inline-code {
+    cursor: pointer;
+    color: rgb(149, 130, 255);
+}
+
+body:is(.obsidian-app, #app) {
+    --titlebar-background: mediumslateblue;
+    --tab-container-background: mediumslateblue;
+    --titlebar-background-focused: mediumslateblue;
+    --ribbon-background: rgb(40, 33, 79);
+}
