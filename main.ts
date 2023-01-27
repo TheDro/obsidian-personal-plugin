@@ -90,6 +90,10 @@ export default class MyPlugin extends Plugin {
 			}
 		})
 
+		// This event could be improved
+		document.addEventListener('focusout', (evt: Event) => {
+			document.body.classList.remove('hold-meta')
+		})
 
 
 		// When registering intervals, this function will automatically clear the interval when the plugin is disabled.

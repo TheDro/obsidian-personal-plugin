@@ -7,15 +7,19 @@ If your plugin does not need CSS, delete this file.
 
 */
 
+body:is(.obsidian-app, #app) {
+    --titlebar-background: mediumslateblue;
+    --tab-container-background: mediumslateblue;
+    --titlebar-background-focused: mediumslateblue;
+    --ribbon-background: rgb(40, 33, 79);
+}
+
 
 .hold-meta span.cm-inline-code {
     cursor: pointer;
     color: rgb(149, 130, 255);
 }
 
-body:is(.obsidian-app, #app) {
-    --titlebar-background: mediumslateblue;
-    --tab-container-background: mediumslateblue;
-    --titlebar-background-focused: mediumslateblue;
-    --ribbon-background: rgb(40, 33, 79);
+.hold-meta span.cm-url {
+    cursor: pointer;
 }
