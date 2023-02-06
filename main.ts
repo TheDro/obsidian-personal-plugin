@@ -10,6 +10,14 @@ const DEFAULT_SETTINGS: MyPluginSettings = {
 	mySetting: 'default'
 }
 
+const IS_MAC = !!navigator.platform.match(/^Mac/i)
+
+const META_KEY = IS_MAC ? 'Meta' : 'Control'
+
+function is_meta_held(evt: MouseEvent) {
+	return IS_MAC ? evt.metaKey : evt.ctrlKey
+}
+
 export default class MyPlugin extends Plugin {
 	settings: MyPluginSettings;
 
@@ -72,20 +80,20 @@ export default class MyPlugin extends Plugin {
 		// If the plugin hooks up any global DOM events (on parts of the app that doesn't belong to this plugin)
 		// Using this function will automatically remove the event listener when this plugin is disabled.
 		this.registerDomEvent(document, 'click', (evt: MouseEvent) => {
-			if (evt.metaKey && evt.target instanceof HTMLElement && evt.target.hasClass('cm-inline-code')) {
+			if (is_meta_held(evt) && evt.target instanceof HTMLElement && evt.target.hasClass('cm-inline-code')) {
 				navigator.clipboard.writeText(evt.target.innerText);
 				new Notice('Copied code!');
 			}
 		});
 
 		this.registerDomEvent(document, 'keydown', (evt: KeyboardEvent) => {
-			if (evt.key == "Meta") {
+			if (evt.key == META_KEY) {
 				document.body.classList.add('hold-meta')
 			}
 		})
 
 		this.registerDomEvent(document, 'keyup', (evt: KeyboardEvent) => {
-			if (evt.key == "Meta") {
+			if (evt.key == META_KEY) {
 				document.body.classList.remove('hold-meta')
 			}
 		})
